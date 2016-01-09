@@ -1,0 +1,34 @@
+{% extends "college/base.html" %}
+{% block content %}
+<hr />
+  <p>Home | <a href="{% url 'college:college' college.pk %}">College Page</a> | <a href="{% url 'college:academics' college.pk %}">Academics</a> | Sports</p>
+<hr />
+  <h1>{{college.name}}</h1>Academic Grade : {{grade}}, Marks:{{marks}}
+  <p>
+    University : {{college.university}} | Address : {{college.address}}, {{college.location}}, {{college.pin}}
+  </p>
+  <hr />
+  <p>
+    Phone : 0{{college.phone}} | Email : {{college.email}} | Website : {{college.website}}
+  </p>
+  <hr />
+  <p>
+    Co-Ed : {{college.coed}} | Seats : {{college.seats}} | Acceptance Rate : {{college.acceptanceRate}}%
+  </p>
+  <hr />
+  <h3>Reviews</h3>
+  <hr />
+  {% for each in reviews %}
+    <p>{{each.authorName}} : {{each.category}} : {{each.marks}} : {{each.review}}</p>
+  {% endfor %}
+  <hr />
+  <h3>Add Review</h3>
+  {% if message != "" %}
+    <p>{{message}}</p>
+  {% endif %}
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="submit" />
+  </form>
+{% endblock content %}

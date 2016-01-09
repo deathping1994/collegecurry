@@ -1,0 +1,11 @@
+{% extends "college/base.html" %}
+{% block content %}
+  <h1>Hello, World!</h1>
+
+  <ul>
+    {% for each in colleges %}
+      <li><a href="{% url 'college:college' each.pk %}">{{each.name}}</a></li>
+    {% endfor %}
+  </ul>
+
+{% endblock content %}
